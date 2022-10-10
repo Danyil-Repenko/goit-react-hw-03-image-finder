@@ -5,7 +5,6 @@ import {
   Search,
   Form,
   SubmitButton,
-  Label,
   Input,
 } from 'components/Searchbar/Searchbar.styled';
 
@@ -36,7 +35,6 @@ export class Searchbar extends Component {
         <Form onSubmit={this.handleSubmit}>
           <SubmitButton type="submit">
             <BiSearchAlt size="25px" />
-            <Label>Search</Label>
           </SubmitButton>
 
           <Input
