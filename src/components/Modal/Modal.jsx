@@ -26,7 +26,7 @@ export class Modal extends Component {
   };
 
   render() {
-    const { image, altText } = this.props;
+    const { image, altText } = this.props.properties;
 
     return (
       <Overlay onClick={this.handleOverlayClick}>
@@ -39,7 +39,6 @@ export class Modal extends Component {
 }
 
 Modal.propTypes = {
-  image: PropTypes.string.isRequired,
-  altText: PropTypes.string,
+  properties: PropTypes.objectOf(PropTypes.string).isRequired,
   closeModal: PropTypes.func.isRequired,
 };

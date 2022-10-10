@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
+import { AppDiv } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -13,7 +14,7 @@ export class App extends Component {
 
   render() {
     return (
-      <div
+      <AppDiv
         style={{
           display: 'grid',
           gridTemplateColumns: '1fr',
@@ -23,7 +24,7 @@ export class App extends Component {
       >
         <Searchbar onFormSubmit={this.acquireQuery} />
         <ImageGallery searchInput={this.state.query} />
-      </div>
+      </AppDiv>
     );
   }
 }

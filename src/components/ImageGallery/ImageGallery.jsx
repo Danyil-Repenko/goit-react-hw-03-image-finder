@@ -6,12 +6,15 @@ import { imageFetch } from 'components/imageFetch';
 import { Button } from 'components/Button/Button';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { MagnifyingGlass } from 'react-loader-spinner';
+import { Modal } from 'components/Modal/Modal';
 
 export class ImageGallery extends Component {
   state = {
     galleryData: null,
     nextPage: 2,
     status: 'idle',
+    showModal: false,
+    modalProps: null,
   };
 
   componentDidUpdate(prevProps) {
@@ -61,6 +64,16 @@ export class ImageGallery extends Component {
       .catch(() => this.setState({ status: 'idle' }));
   };
 
+  toggleModal = () => {
+    this.setState(state => ({
+      showModal: !state.showModal,
+    }));
+  };
+
+  getPropsForModal = (image, altText) => {
+    this.setState({ modalProps: { image, altText } });
+  };
+
   createListItems = () => {
     if (this.state.galleryData) {
       return this.state.galleryData.map(
@@ -71,6 +84,8 @@ export class ImageGallery extends Component {
               smallImage={webformatURL}
               largeImage={largeImageURL}
               tags={tags}
+              toggleModal={this.toggleModal}
+              propsForModal={this.getPropsForModal}
             />
           );
         }
@@ -80,6 +95,8 @@ export class ImageGallery extends Component {
 
   render() {
     const status = this.state.status;
+    const modalStatus = this.state.showModal;
+
     return (
       <>
         <Gallery>{this.createListItems()}</Gallery>
@@ -96,6 +113,12 @@ export class ImageGallery extends Component {
           />
         )}
         {status === 'loaded' && <Button onButtonClick={this.handleLoadMore} />}
+        {modalStatus && (
+          <Modal
+            properties={this.state.modalProps}
+            closeModal={this.toggleModal}
+          />
+        )}
       </>
     );
   }
