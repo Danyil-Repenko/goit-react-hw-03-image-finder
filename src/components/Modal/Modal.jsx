@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 export class Modal extends Component {
   componentDidMount() {
     window.addEventListener('keydown', this.handleEscClick);
-    document.body.classList.add('modal-open');
+    document.querySelector('#root').classList.add('modal-open');
   }
 
   componentWillUnmount() {
     window.removeEventListener('keydown', this.handleEscClick);
-    document.body.classList.remove('modal-open');
+    document.querySelector('#root').classList.remove('modal-open');
   }
 
   handleEscClick = event => {

@@ -80,12 +80,10 @@ export class ImageGallery extends Component {
 
   render() {
     const status = this.state.status;
-    const gallery = <Gallery>{this.createListItems()}</Gallery>;
-
-    if (status === 'searching') {
-      return (
-        <>
-          {gallery}
+    return (
+      <>
+        <Gallery>{this.createListItems()}</Gallery>
+        {status === 'searching' && (
           <MagnifyingGlass
             visible={true}
             height="100"
@@ -96,20 +94,10 @@ export class ImageGallery extends Component {
             glassColor="#ffffff"
             color="#000000"
           />
-        </>
-      );
-    }
-
-    if (status === 'loaded') {
-      return (
-        <>
-          {gallery}
-          <Button onButtonClick={this.handleLoadMore} />;
-        </>
-      );
-    }
-
-    return gallery;
+        )}
+        {status === 'loaded' && <Button onButtonClick={this.handleLoadMore} />}
+      </>
+    );
   }
 }
 

@@ -22,6 +22,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root.modal-open {
+  overflow: hidden;
+}
+
 img {
   display: block;
   max-width: 100%;
