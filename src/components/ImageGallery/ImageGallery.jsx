@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { ImageGalleryItem } from 'components/ImageGalleryItem/ImageGalleryItem';
 import { Gallery } from './ImageGallery.styled';
 import { imageFetch } from 'components/imageFetch';
@@ -111,3 +112,7 @@ export class ImageGallery extends Component {
     return gallery;
   }
 }
+
+ImageGallery.propTypes = {
+  searchInput: PropTypes.string.isRequired,
+};
